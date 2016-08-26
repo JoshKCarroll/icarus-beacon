@@ -1,0 +1,19 @@
+{
+  "type": "FeatureCollection",
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "ref": "icarus",
+        "name": "icarus"
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -119.20676708221434,
+          40.78950978441435
+        ]
+      }
+    }
+  ]
+}

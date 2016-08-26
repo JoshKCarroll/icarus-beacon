@@ -1,0 +1,97 @@
+
+scene:
+    background:
+        color: '#000000'
+
+cameras:
+    camera1:
+        position: [-119.2065, 40.7864, 14.2]
+        type: flat
+        axis: [1,1]
+        active: true
+lights:
+    light1:
+        type: directional
+        direction: [0, 1, -.5]
+        diffuse: .3
+        ambient: 1
+
+sources:
+    osm:
+        type: TopoJSON
+        url:  https://vector.mapzen.com/osm/all/{z}/{x}/{y}.topojson?api_key=vector-tiles-HqUVidw
+        max_zoom: 16
+
+
+    overlay:
+        type: GeoJSON
+        url: brc-map.json
+
+    icarus:
+        type: GeoJSON
+        url: icarus.json
+layers:
+    # earth:
+    #     data: { source: osm }
+    #     draw:
+    #         polygons:
+    #             order: function() { return feature.sort_key; }
+    #             color: '#ddeeee'
+    #
+    # landuse:
+    #     data: { source: osm }
+    #     draw:
+    #         polygons:
+    #             order: function() { return feature.sort_key; }
+    #             color: '#aaffaa'
+    #
+    # water:
+    #     data: { source: osm }
+    #     draw:
+    #         polygons:
+    #             order: function() { return feature.sort_key; }
+    #             color: '#88bbee'
+    fence:
+        data: { source: overlay }
+        draw:
+            lines:
+                order: 2
+                color: '#ffffff'
+    icarus:
+      data: { source: icarus }
+      draw:
+          points:
+              size: 30px
+              color: pink
+    roads:
+        data: { source: overlay }
+        filter:
+            not: { kind: [rail] }
+        draw:
+            lines:
+                color: green
+                width: 24
+                order: 'function() { return feature.sort_key + 5 || 0 }'
+                #outline:
+                #    color: [[16, '#999'], [18, '#aaa']]
+                #    width: [[10, 0], [16, 2]]
+
+        rounded:
+            filter: { $zoom: { min: 18 } }
+            draw:
+                lines:
+                    cap: round
+        highway:
+            filter: { kind: highway }
+            draw:
+                lines:
+                    color: '#D16768'
+                    width: [[14, 2px], [15, 12]]
+                    outline:
+                        width: [[14, 0], [15, 2]]
+            link:
+                filter: { is_link: yes }
+                draw:
+                    lines:
+                        color: '#aaa'
+                        width: [[13, 1px], [14, 12]]

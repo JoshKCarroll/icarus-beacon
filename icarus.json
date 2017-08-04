@@ -1,1 +1,1 @@
-{"type": "FeatureCollection", "features": [{"geometry": {"type": "Point", "coordinates": [-119.2307, 40.783300000000004]}, "type": "Feature", "properties": {"ref": "icarus", "name": "icarus"}}]}
+{"type": "FeatureCollection", "features": [{"geometry": {"type": "Point", "coordinates": [-119.219, 40.795]}, "type": "Feature", "properties": {"ref": "icarus", "name": "icarus"}}]}

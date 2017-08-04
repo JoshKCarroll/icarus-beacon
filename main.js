@@ -18,23 +18,36 @@ map = (function () {
 
 }());
 
+function interval(func, wait, times){
+    var interv = function(w, t){
+        return function(){
+            if(typeof t === "undefined" || t-- > 0){
+                setTimeout(interv, w);
+                try{
+                    func.call(null);
+                }
+                catch(e){
+                    t = 0;
+                    throw e.toString();
+                }
+            }
+        };
+    }(wait, times);
+
+    setTimeout(interv, wait);
+};
+
 function repeat_load() {
-    setInterval(function() { 
+    interval(function() { 
         //alert(map.layer)
         map.eachLayer(function (layer) {
             layers = layer.scene.config.layers
-            //if(layers.icarus.visible) {
-            //    layers.roads.draw.lines.color = 'blue';
-            //    layers.icarus.visible = false;
-            //} else {
-            //    layers.roads.draw.lines.color = 'green';
-            //    layers.icarus.visible = true;
-            //}
+            if(layers.roads.draw.lines.color == 'blue') {
+                layers.roads.draw.lines.color = 'green';
+            } else {
+                layers.roads.draw.lines.color = 'blue';
+            }
             layer.scene.updateConfig();
-            //layer.scene.updateConfig( { rebuild: true } );
-            //alert(layer.scene.config.styles.icarus.texture);
         });
-        //document.body.map.layer.scene.setDataSource(
-        //    'icarus', {type: 'GeoJSON', url: 'icarus.json'})
     }, 3000);  
 }

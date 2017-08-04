@@ -14,6 +14,7 @@ map = (function () {
 
     map.attributionControl.remove();
     map.zoomControl.remove();
+    map.setView([40.7864, -119.2065], 13.8);
 
     return map;
 

@@ -8,7 +8,7 @@ This project is based on [Tangram](http://github.com/tangrams/tangram) and, thus
 
 ### To run on a raspberry pi:
 
-1. Download this repo, and install the included r_kiosk plugin for iceweasel (which should also be installed).
+1. Download this repo, and install the included r_kiosk plugin for iceweasel (which should also be installed). Make sure xdotool is also installed.
 
 2. Copy start.sh to appropriate folder and configure it to cd to this repo. Command to fake gps coordinates is included by default for testing, but can be commented out for real usage.
 

@@ -42,12 +42,10 @@ function repeat_load() {
         //alert(map.layer)
         map.eachLayer(function (layer) {
             layers = layer.scene.config.layers
-            if(layers.icarus.visible) {
-                layers.roads.draw.lines.color = 'blue';
-                layers.icarus.visible = false;
-            } else {
+            if(layers.roads.draw.lines.color == 'blue') {
                 layers.roads.draw.lines.color = 'green';
-                layers.icarus.visible = true;
+            } else {
+                layers.roads.draw.lines.color = 'blue';
             }
             layer.scene.updateConfig();
         });

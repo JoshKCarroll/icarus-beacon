@@ -12,7 +12,8 @@ map = (function () {
 
     layer.addTo(map);
 
-    map.setView([40.7864, -119.2065], 13.8);
+    map.attributionControl.remove();
+    map.zoomControl.remove();
 
     return map;
 

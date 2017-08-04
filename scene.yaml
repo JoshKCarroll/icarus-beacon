@@ -1,0 +1,48 @@
+
+scene:
+    background:
+        color: '#000000'
+
+cameras:
+    camera1:
+        position: [-119.2065, 40.7854, 13.95]
+        type: flat
+        axis: [1,1]
+        active: true
+
+lights:
+    light1:
+        type: directional
+        direction: [0, 1, -.5]
+        diffuse: .3
+        ambient: 1
+
+sources:
+    overlay:
+        type: GeoJSON
+        url: brc-map.json
+
+    icarus:
+        type: GeoJSON
+        url: icarus.json
+
+styles:
+    icarus:
+        base: points
+        texture: images/ICARUS_arrow.png
+layers:
+    icarus:
+      data: { source: icarus }
+      draw:
+          icarus:
+              anchor: top-right
+              size: 60px
+
+    roads:
+        data: { source: overlay }
+        filter:
+            not: { kind: [rail] }
+        draw:
+            lines:
+                color: green
+                width: 24
